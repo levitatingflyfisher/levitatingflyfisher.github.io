@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FBF8F4">
+<title>OpenHearth — calm, local-first tools for family life</title>
+<meta name="description" content="OpenHearth builds free, private, local-first tools for households — reading, learning, and home life. No ads, no tracking, no accounts. Open by default.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23FBF8F4'/%3E%3Cpath d='M256 96c-36 0-66 54-66 128 0 56 20 102 66 148 46-46 66-92 66-148 0-74-30-128-66-128z' fill='%23C47B6A'/%3E%3Cpath d='M256 150c-18 0-33 37-33 83 0 35 11 64 33 91 22-27 33-56 33-91 0-46-15-83-33-83z' fill='%23A85040'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --linen:#FBF8F4; --paper:#fff; --ink:#2b2420; --muted:#6b5d54;
+    --copper:#C47B6A; --copper-deep:#A85040; --ember:#6E2F22;
+    --pine:#356B4E; --pine-deep:#284F3A;   /* Android APK action */
+    --slate:#3C615C; --slate-deep:#2C4945; /* desktop download action */
+    --line:#ece3d9; --shadow:0 1px 2px rgba(110,47,34,.04),0 6px 24px rgba(110,47,34,.07);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--linen:#1b1714;--paper:#241e1a;--ink:#f3ece3;--muted:#b6a899;--line:#352b25;
+      --shadow:0 1px 2px rgba(0,0,0,.2),0 8px 28px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--linen);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;font-size:17px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--copper-deep);text-underline-offset:3px;text-decoration-thickness:1px}
+
+  header.hero{padding:88px 0 56px;text-align:center}
+  .mark{width:60px;height:60px;margin:0 auto 22px;display:block;filter:drop-shadow(0 4px 10px rgba(168,80,64,.25))}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,6vw,4rem);
+    letter-spacing:-.02em;margin:0 0 8px;line-height:1.04}
+  .hearth{color:var(--copper-deep)}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(1.15rem,2.6vw,1.5rem);color:var(--muted);margin:0 auto;max-width:30ch}
+  .lede{margin:26px auto 0;max-width:56ch;color:var(--muted);font-size:1.05rem}
+
+  .values{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0 0}
+  .chip{font-size:.86rem;font-weight:600;color:var(--ember);background:var(--paper);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;box-shadow:var(--shadow)}
+  @media (prefers-color-scheme:dark){.chip{color:var(--copper)}}
+
+  h2.section{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--muted);margin:64px 0 20px;text-align:center}
+
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card-head{display:flex;align-items:center;gap:13px;margin-bottom:6px}
+  .card-ico{width:44px;height:44px;border-radius:12px;flex:0 0 auto}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:0;letter-spacing:-.01em}
+  .card .kind{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--copper-deep)}
+  .card p{color:var(--muted);margin:10px 0 20px;font-size:.98rem;flex:1}
+  .actions{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{font-family:var(--sans);font-weight:700;font-size:.94rem;border-radius:11px;
+    padding:11px 18px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid transparent;transition:transform .08s ease,box-shadow .15s ease,background .15s ease}
+  .btn:active{transform:translateY(1px)}
+  /* Platform-typed actions, all equal weight (solid fill, white text). Colour
+     encodes platform: copper = the OpenHearth web app, pine = the Android APK,
+     slate = the desktop download. */
+  .btn-web{background:var(--copper-deep);color:#fff;box-shadow:0 2px 8px rgba(168,80,64,.3)}
+  .btn-web:hover{background:var(--ember)}
+  .btn-apk{background:var(--pine);color:#fff;box-shadow:0 2px 8px rgba(40,79,58,.32)}
+  .btn-apk:hover{background:var(--pine-deep)}
+  .btn-desktop{background:var(--slate);color:#fff;box-shadow:0 2px 8px rgba(44,73,69,.3)}
+  .btn-desktop:hover{background:var(--slate-deep)}
+  .btn-ghost{background:transparent;color:var(--ember);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--copper)}
+  @media (prefers-color-scheme:dark){.btn-ghost{color:var(--copper)}}
+  /* A platform the visitor isn't on (e.g. a desktop app viewed on a phone),
+     or an app that hasn't shipped yet (the whole card dims via .soon). */
+  .btn-na{background:var(--line);color:var(--muted);box-shadow:none;pointer-events:none}
+  .soon{opacity:.62}
+
+  footer{margin:80px 0 56px;padding-top:28px;border-top:1px solid var(--line);
+    text-align:center;color:var(--muted);font-size:.9rem}
+  footer a{color:var(--muted)}
+  .note{max-width:60ch;margin:14px auto 0;font-size:.84rem;opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <svg class="mark" viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" rx="104" fill="#C47B6A" opacity=".14"/>
+      <path d="M256 96c-36 0-66 54-66 128 0 56 20 102 66 148 46-46 66-92 66-148 0-74-30-128-66-128z" fill="#C47B6A"/>
+      <path d="M256 150c-18 0-33 37-33 83 0 35 11 64 33 91 22-27 33-56 33-91 0-46-15-83-33-83z" fill="#A85040"/>
+    </svg>
+    <h1>Open<span class="hearth">Hearth</span></h1>
+    <p class="tagline">Calm, private tools for the life of a home.</p>
+    <p class="lede">Software should be like a good kitchen table — useful, durable, and yours.
+      OpenHearth builds small, local-first apps for reading, learning, and family life.
+      Everything runs on your device. Install any of them like an app, right from your browser.</p>
+    <div class="values">
+      <span class="chip">Local-first</span>
+      <span class="chip">No ads, no tracking</span>
+      <span class="chip">No account needed</span>
+      <span class="chip">Open source</span>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section">The apps</h2>
+    <div class="apps" id="apps"></div>
+  </main>
+
+  <footer>
+    <p>OpenHearth is free and open. Built in the open on
+      <a href="https://github.com/levitatingflyfisher" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p class="note">Each app is a Progressive Web App — open it in your phone's browser and choose
+      “Install” / “Add to Home screen” to keep it offline. Android users can also sideload the APK.</p>
+  </footer>
+</div>
+
+<script>
+  // Data-driven so a new app is one entry. PWA = the installable web build;
+  // apk = optional Android download (GitHub release asset).
+  const APPS = [
+    { name:"Sundial", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><rect width='1024' height='1024' fill='#F5F0E8'/><path d='M 212 680 A 300 300 0 0 1 812 680' stroke='#C8B89A' stroke-width='52' fill='none' stroke-linecap='round'/><path d='M 212 680 A 300 300 0 0 1 512 380' stroke='#5E9478' stroke-width='52' fill='none' stroke-linecap='round'/><line x1='164' y1='680' x2='860' y2='680' stroke='#C8B89A' stroke-width='10' stroke-linecap='round'/><line x1='512' y1='680' x2='512' y2='380' stroke='#5E9478' stroke-width='14' stroke-opacity='0.28' stroke-linecap='round'/><circle cx='512' cy='380' r='50' fill='#5E9478'/></svg>", kind:"Outdoor time", c1:"#D9A14E", c2:"#B07A2E",
+      desc:"A gentle, local-first tracker that nudges the whole family toward more time outdoors.",
+      pwa:"https://levitatingflyfisher.github.io/Sundial/",
+      apk:"https://github.com/levitatingflyfisher/Sundial/releases/latest/download/Sundial.apk" },
+    { name:"Furrow", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#B07A2E' opacity='.16'/><path d='M130 160 Q256 126 382 160 M130 224 Q256 190 382 224 M130 352 Q256 318 382 352' stroke='#B07A2E' stroke-width='40' stroke-linecap='round' fill='none'/><path d='M130 288 Q256 254 382 288' stroke='#6E4A19' stroke-width='40' stroke-linecap='round' fill='none'/></svg>", kind:"Daily habits", c1:"#B07A2E", c2:"#6E4A19",
+      desc:"A calm daily grid for the habits and virtues you mean to keep — Franklin's book of days, Aristotle's “we are what we repeatedly do.” Tick, count, or time each one; a good week looks like a furrow cut clean.",
+      pwa:"https://levitatingflyfisher.github.io/Furrow/",
+      apk:"https://github.com/levitatingflyfisher/Furrow/releases/latest/download/Furrow.apk" },
+    { name:"WeatherGlass", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#3D82C9' opacity='.16'/><g stroke='#21528A' stroke-width='26' stroke-linecap='round'><line x1='292' y1='208' x2='324' y2='208'/><line x1='267' y1='269' x2='289' y2='291'/><line x1='206' y1='294' x2='206' y2='326'/><line x1='145' y1='269' x2='123' y2='291'/><line x1='120' y1='208' x2='88' y2='208'/><line x1='145' y1='147' x2='123' y2='125'/><line x1='206' y1='122' x2='206' y2='90'/><line x1='267' y1='147' x2='289' y2='125'/></g><circle cx='206' cy='208' r='70' fill='#21528A'/><rect x='196' y='298' width='238' height='70' rx='35' fill='#3D82C9'/><circle cx='288' cy='300' r='82' fill='#3D82C9'/><circle cx='286' cy='256' r='58' fill='#3D82C9'/><circle cx='212' cy='320' r='56' fill='#3D82C9'/><circle cx='360' cy='308' r='60' fill='#3D82C9'/></svg>", kind:"Weather", c1:"#3D82C9", c2:"#21528A",
+      desc:"A calm, local-first weather app for the home — the hours ahead and the week, on a screen painted from the real sky. Your location is rounded to a coarse cell before anything is sent; no account, no tracking. Read the sky, tell no one.",
+      pwa:"https://levitatingflyfisher.github.io/WeatherGlass/",
+      apk:"https://github.com/levitatingflyfisher/WeatherGlass/releases/latest/download/WeatherGlass.apk" },
+    { name:"Parlour", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#3E8E78' opacity='.16'/><circle cx='204' cy='300' r='74' fill='none' stroke='#2F5D50' stroke-width='30'/><g stroke='#3E8E78' stroke-width='34' stroke-linecap='round'><line x1='262' y1='168' x2='356' y2='262'/><line x1='356' y1='168' x2='262' y2='262'/></g></svg>", kind:"Family games", c1:"#3E8E78", c2:"#2F5D50",
+      desc:"A calm cupboard of pass-and-play classic games for the family table — tic-tac-toe and friends, with more on the shelf. Play the computer or hand the device around. Local-first, offline, no accounts, no ads.",
+      pwa:"https://levitatingflyfisher.github.io/Parlour/",
+      apk:"https://github.com/levitatingflyfisher/Parlour/releases/latest/download/Parlour.apk" },
+    { name:"Lilt", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C9A26B' opacity='.16'/><rect x='252' y='150' width='24' height='222' fill='#8B6F47'/><path d='M276 150 C330 168 344 214 326 264 C332 218 308 190 276 200 Z' fill='#C9A26B'/><ellipse cx='206' cy='356' rx='58' ry='46' transform='rotate(-20 206 356)' fill='#C9A26B'/></svg>", kind:"Baby names", c1:"#C9A26B", c2:"#8B6F47",
+      desc:"Find the name you both love. Rank baby names together through quick, playful head-to-head picks — local-first, no account.",
+      pwa:"https://levitatingflyfisher.github.io/Lilt/",
+      apk:"https://github.com/levitatingflyfisher/Lilt/releases/latest/download/Lilt.apk" },
+    { name:"Punctum Temporis", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C98A8A' opacity='.16'/><rect x='132' y='158' width='248' height='196' rx='28' fill='#C98A8A'/><rect x='150' y='170' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='196' y='170' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='242' y='170' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='288' y='170' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='334' y='170' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='150' y='320' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='196' y='320' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='242' y='320' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='288' y='320' width='22' height='22' rx='6' fill='#A85F5F'/><rect x='334' y='320' width='22' height='22' rx='6' fill='#A85F5F'/><circle cx='256' cy='256' r='30' fill='#A85F5F'/></svg>", kind:"Daily montage", c1:"#C98A8A", c2:"#A85F5F",
+      desc:"A Daybook of Vignettes — daily snapshots stitched into a journal montage, one second of every day.",
+      pwa:"https://levitatingflyfisher.github.io/PunctumTemporis/",
+      apk:"https://github.com/levitatingflyfisher/PunctumTemporis/releases/latest/download/PunctumTemporis.apk" },
+    { name:"Lullaby", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#9A8FB5' opacity='.16'/><path d='M311 127 A140 140 0 1 0 311 385 A132 132 0 0 1 311 127 Z' fill='#9A8FB5'/><path d='M385 120 L394 151 L425 160 L394 169 L385 200 L376 169 L345 160 L376 151 Z' fill='#6E5F90'/></svg>", kind:"Baby tracker", c1:"#9A8FB5", c2:"#6E5F90",
+      desc:"A FLOSS baby tracker for exhausted parents — feeds, sleep, and diapers, all on your device.",
+      pwa:"https://levitatingflyfisher.github.io/Lullaby/",
+      apk:"https://github.com/levitatingflyfisher/Lullaby/releases/latest/download/Lullaby.apk" },
+    {
+      name:"Trellis", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C47B6A' opacity='.16'/><g stroke='#C47B6A' stroke-width='26' stroke-linecap='round'><line x1='120' y1='200' x2='312' y2='392'/><line x1='120' y1='120' x2='392' y2='392'/><line x1='200' y1='120' x2='392' y2='312'/></g><g stroke='#A85040' stroke-width='26' stroke-linecap='round'><line x1='120' y1='312' x2='312' y2='120'/><line x1='120' y1='392' x2='392' y2='120'/><line x1='200' y1='392' x2='392' y2='200'/></g></svg>", kind:"Learning engine",
+      desc:"Read anything — books, articles, podcasts — with a speed reader, then drill it into durable memory with spaced repetition. On-device translation, transcription, and read-aloud; import authored courses too. Nothing leaves your device.",
+      c1:"#C47B6A", c2:"#A85040",
+      pwa:"https://levitatingflyfisher.github.io/ohPrimer/",
+      apk:"https://github.com/levitatingflyfisher/ohPrimer/releases/latest/download/trellis.apk"
+    },
+    { name:"StillLife", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C08552' opacity='.16'/><rect x='160' y='200' width='192' height='172' rx='10' fill='#C08552'/><rect x='170' y='200' width='172' height='26' fill='#965B2E'/><polygon points='160,200 256,200 214,140 118,140' fill='#965B2E'/><polygon points='256,200 352,200 394,140 298,140' fill='#965B2E'/></svg>", kind:"Home inventory", c1:"#C08552", c2:"#965B2E",
+      desc:"Know what you own, where it is, and what it's worth — a private home inventory kept on-device. Uses your camera and a barcode scanner, so it's an Android app rather than a web build.",
+      apk:"https://github.com/levitatingflyfisher/StillLife/releases/latest/download/StillLife.apk" },
+    { name:"Reckon", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#7E94A8' opacity='.16'/><rect x='120' y='148' width='272' height='26' rx='13' fill='#536B82'/><circle cx='256' cy='148' r='20' fill='#536B82'/><rect x='242' y='174' width='28' height='164' fill='#536B82'/><polygon points='228,338 284,338 316,372 196,372' fill='#536B82'/><rect x='180' y='372' width='152' height='20' rx='10' fill='#536B82'/><path d='M150 176 L110 232 A40 18 0 0 0 190 232 Z' fill='#7E94A8'/><path d='M362 176 L322 232 A40 18 0 0 0 402 232 Z' fill='#7E94A8'/></svg>", kind:"Decision journal", c1:"#7E94A8", c2:"#536B82",
+      desc:"Think a choice through, write down what you expect, and learn from how it actually turned out. Runs an on-device LLM, so it's an Android app rather than a web build.",
+      apk:"https://github.com/levitatingflyfisher/Reckon/releases/latest/download/Reckon.apk" },
+    { name:"Mantle", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#A57A8C' opacity='.16'/><rect x='150' y='150' width='212' height='212' rx='46' transform='rotate(45 256 256)' fill='#7A4F62'/><rect x='192' y='192' width='128' height='128' rx='30' transform='rotate(45 256 256)' fill='#A57A8C'/><rect x='228' y='228' width='56' height='56' rx='15' transform='rotate(45 256 256)' fill='#7A4F62'/></svg>", kind:"Shared aesthetic", c1:"#A57A8C", c2:"#7A4F62",
+      desc:"Discover your family's shared aesthetic together — privately, with no account.",
+      pwa:"https://levitatingflyfisher.github.io/Mantle/",
+      apk:"https://github.com/levitatingflyfisher/Mantle/releases/latest/download/Mantle.apk" },
+    { name:"glean", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#5E8B86' opacity='.16'/><g transform='translate(256 256) rotate(-22)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(0)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(22)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(-22)'><path d='M0,-174 Q37,-90 0,-6 Q-37,-90 0,-174 Z' fill='#3C615C'/></g><g transform='translate(256 256) rotate(0)'><path d='M0,-182 Q38,-94 0,-6 Q-38,-94 0,-182 Z' fill='#3C615C'/></g><g transform='translate(256 256) rotate(22)'><path d='M0,-174 Q37,-90 0,-6 Q-37,-90 0,-174 Z' fill='#3C615C'/></g><rect x='196' y='249' width='120' height='30' rx='15' fill='#3C615C'/></svg>", kind:"Family finance", c1:"#5E8B86", c2:"#3C615C",
+      desc:"Plain-text family finance — a local-first budget and ledger on the hledger / Paisa model. A desktop app for Windows, macOS, and Linux.",
+      desktopBuilds:{
+        win:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-windows-setup.exe",
+        mac:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-macos.dmg",
+        linux:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-x86_64.AppImage"
+      },
+      desktopAll:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/tag/glean-desktop-v0" }
+  ];
+  // Desktop = fine pointer + a roomy screen. glean is a desktop app, so its
+  // download only makes sense here; on phones it shows as desktop-only.
+  const isDesktop = window.matchMedia('(min-width:900px) and (pointer:fine)').matches;
+  // Offer the build that matches the visitor's OS (with an "all platforms" link).
+  const os = /Windows/i.test(navigator.userAgent) ? 'win'
+           : /Mac/i.test(navigator.userAgent) ? 'mac' : 'linux';
+  const osLabel = { win:'Windows', mac:'macOS', linux:'Linux' }[os];
+  // Each card may supply its own distinctive `icon` (raw SVG markup); apps
+  // without one fall back to the shared OpenHearth "hearth flame" mark.
+  const ico = (a)=> a.icon
+    ? `data:image/svg+xml,${encodeURIComponent(a.icon)}`
+    : `data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='${a.c1}' opacity='.16'/><path d='M256 104c-34 0-62 50-62 120 0 52 19 96 62 140 43-44 62-88 62-140 0-70-28-120-62-120z' fill='${a.c1}'/><path d='M256 156c-17 0-31 35-31 78 0 33 10 60 31 86 21-26 31-53 31-86 0-43-14-78-31-78z' fill='${a.c2}'/></svg>`)}`;
+  // Each card's action row. A web app and its Android APK sit side by side at
+  // equal weight (copper + pine); an Android-only app shows just the green APK
+  // button — never the copper web colour; glean is a desktop download.
+  const webBtn = a=>`<a class="btn btn-web" href="${a.pwa}">Open web app →</a>`;
+  const apkBtn = a=>`<a class="btn btn-apk" href="${a.apk}">Android app ↓</a>`;
+  const actionsFor = a=>
+      a.soon ? `<span class="btn btn-na">Coming soon</span>`
+    : a.pwa  ? webBtn(a) + (a.apk ? apkBtn(a) : ``)
+    : a.apk  ? apkBtn(a)
+    : a.desktopBuilds
+        ? (isDesktop
+            ? `<a class="btn btn-desktop" href="${a.desktopBuilds[os]||a.desktopBuilds.linux}">Download for ${osLabel} ↓</a>`
+              + `<a class="btn btn-ghost" href="${a.desktopAll}">All platforms</a>`
+            : `<span class="btn btn-na">Desktop app</span>`)
+        : `<span class="btn btn-na">Coming soon</span>`;
+  document.getElementById("apps").innerHTML = APPS.map(a=>`
+    <article class="card${a.soon?' soon':''}">
+      <div class="card-head">
+        <img class="card-ico" src="${ico(a)}" alt="">
+        <div><div class="kind">${a.kind}</div><h3>${a.name}</h3></div>
+      </div>
+      <p>${a.desc}</p>
+      <div class="actions">${actionsFor(a)}</div>
+    </article>`).join("");
+</script>
+</body>
+</html>

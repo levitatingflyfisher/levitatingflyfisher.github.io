@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FBF8F4">
+<title>OpenHearth — calm, local-first tools for family life</title>
+<meta name="description" content="OpenHearth builds free, private, local-first tools for households — reading, learning, and home life. No ads, no tracking, no accounts. Open by default.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23FBF8F4'/%3E%3Cpath d='M256 96c-36 0-66 54-66 128 0 56 20 102 66 148 46-46 66-92 66-148 0-74-30-128-66-128z' fill='%23C47B6A'/%3E%3Cpath d='M256 150c-18 0-33 37-33 83 0 35 11 64 33 91 22-27 33-56 33-91 0-46-15-83-33-83z' fill='%23A85040'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<style>
+  :root{
+    --linen:#FBF8F4; --paper:#fff; --ink:#2b2420; --muted:#6b5d54;
+    --copper:#C47B6A; --copper-deep:#A85040; --ember:#6E2F22;
+    --line:#ece3d9; --shadow:0 1px 2px rgba(110,47,34,.04),0 6px 24px rgba(110,47,34,.07);
+    --serif:'Fraunces',Georgia,'Times New Roman',serif;
+    --sans:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--linen:#1b1714;--paper:#241e1a;--ink:#f3ece3;--muted:#b6a899;--line:#352b25;
+      --shadow:0 1px 2px rgba(0,0,0,.2),0 8px 28px rgba(0,0,0,.35);}
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--linen);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;font-size:17px;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  a{color:var(--copper-deep);text-underline-offset:3px;text-decoration-thickness:1px}
+
+  header.hero{padding:88px 0 56px;text-align:center}
+  .mark{width:60px;height:60px;margin:0 auto 22px;display:block;filter:drop-shadow(0 4px 10px rgba(168,80,64,.25))}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.6rem,6vw,4rem);
+    letter-spacing:-.02em;margin:0 0 8px;line-height:1.04}
+  .hearth{color:var(--copper-deep)}
+  .tagline{font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(1.15rem,2.6vw,1.5rem);color:var(--muted);margin:0 auto;max-width:30ch}
+  .lede{margin:26px auto 0;max-width:56ch;color:var(--muted);font-size:1.05rem}
+
+  .values{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:30px 0 0}
+  .chip{font-size:.86rem;font-weight:600;color:var(--ember);background:var(--paper);
+    border:1px solid var(--line);border-radius:999px;padding:7px 15px;box-shadow:var(--shadow)}
+  @media (prefers-color-scheme:dark){.chip{color:var(--copper)}}
+
+  h2.section{font-family:var(--serif);font-weight:600;font-size:1.05rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--muted);margin:64px 0 20px;text-align:center}
+
+  .apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:26px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card-head{display:flex;align-items:center;gap:13px;margin-bottom:6px}
+  .card-ico{width:44px;height:44px;border-radius:12px;flex:0 0 auto}
+  .card h3{font-family:var(--serif);font-weight:600;font-size:1.45rem;margin:0;letter-spacing:-.01em}
+  .card .kind{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--copper-deep)}
+  .card p{color:var(--muted);margin:10px 0 20px;font-size:.98rem;flex:1}
+  .actions{display:flex;flex-wrap:wrap;gap:10px}
+  .btn{font-family:var(--sans);font-weight:700;font-size:.94rem;border-radius:11px;
+    padding:11px 18px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid transparent;transition:transform .08s ease,box-shadow .15s ease}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--copper-deep);color:#fff;box-shadow:0 2px 8px rgba(168,80,64,.3)}
+  .btn-primary:hover{background:var(--ember)}
+  .btn-ghost{background:transparent;color:var(--ember);border-color:var(--line)}
+  .btn-ghost:hover{border-color:var(--copper)}
+  @media (prefers-color-scheme:dark){.btn-ghost{color:var(--copper)}}
+
+  .soon{opacity:.62}
+  .soon .btn-primary{background:var(--line);color:var(--muted);box-shadow:none;pointer-events:none}
+
+  footer{margin:80px 0 56px;padding-top:28px;border-top:1px solid var(--line);
+    text-align:center;color:var(--muted);font-size:.9rem}
+  footer a{color:var(--muted)}
+  .note{max-width:60ch;margin:14px auto 0;font-size:.84rem;opacity:.85}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <svg class="mark" viewBox="0 0 512 512" aria-hidden="true">
+      <rect width="512" height="512" rx="104" fill="#C47B6A" opacity=".14"/>
+      <path d="M256 96c-36 0-66 54-66 128 0 56 20 102 66 148 46-46 66-92 66-148 0-74-30-128-66-128z" fill="#C47B6A"/>
+      <path d="M256 150c-18 0-33 37-33 83 0 35 11 64 33 91 22-27 33-56 33-91 0-46-15-83-33-83z" fill="#A85040"/>
+    </svg>
+    <h1>Open<span class="hearth">Hearth</span></h1>
+    <p class="tagline">Calm, private tools for the life of a home.</p>
+    <p class="lede">Software should be like a good kitchen table — useful, durable, and yours.
+      OpenHearth builds small, local-first apps for reading, learning, and family life.
+      Everything runs on your device. Install any of them like an app, right from your browser.</p>
+    <div class="values">
+      <span class="chip">Local-first</span>
+      <span class="chip">No ads, no tracking</span>
+      <span class="chip">No account needed</span>
+      <span class="chip">Open source</span>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section">The apps</h2>
+    <div class="apps" id="apps"></div>
+  </main>
+
+  <footer>
+    <p>OpenHearth is free and open. Built in the open on
+      <a href="https://github.com/levitatingflyfisher" target="_blank" rel="noopener">GitHub</a>.</p>
+    <p class="note">Each app is a Progressive Web App — open it in your phone's browser and choose
+      “Install” / “Add to Home screen” to keep it offline. Android users can also sideload the APK.</p>
+  </footer>
+</div>
+
+<script>
+  // Data-driven so a new app is one entry. PWA = the installable web build;
+  // apk = optional Android download (GitHub release asset).
+  const APPS = [
+    {
+      name:"ohPrimer", kind:"Reading engine",
+      desc:"Speed-read anything — books, articles, podcasts — with an RSVP reader, then keep it with spaced repetition. On-device translation, transcription, and read-aloud. Nothing leaves your device.",
+      c1:"#C47B6A", c2:"#A85040",
+      pwa:"https://levitatingflyfisher.github.io/ohPrimer/"
+    },
+    {
+      name:"Trellis", kind:"Knowledge engine",
+      desc:"Load any source and drill it into durable, first-principles memory. A Quantum-Country-style mnemonic medium: prose interleaved with atomic spaced-repetition cards, scheduled so it sticks.",
+      c1:"#7C9A86", c2:"#4F6F5B",
+      pwa:"https://levitatingflyfisher.github.io/Trellis/",
+      apk:"https://github.com/levitatingflyfisher/Trellis/releases/latest/download/trellis.apk"
+    }
+  ];
+  const ico = (a)=>`data:image/svg+xml,${encodeURIComponent(
+    `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='${a.c1}' opacity='.16'/><path d='M256 104c-34 0-62 50-62 120 0 52 19 96 62 140 43-44 62-88 62-140 0-70-28-120-62-120z' fill='${a.c1}'/><path d='M256 156c-17 0-31 35-31 78 0 33 10 60 31 86 21-26 31-53 31-86 0-43-14-78-31-78z' fill='${a.c2}'/></svg>`)}`;
+  document.getElementById("apps").innerHTML = APPS.map(a=>`
+    <article class="card${a.soon?' soon':''}">
+      <div class="card-head">
+        <img class="card-ico" src="${ico(a)}" alt="">
+        <div><div class="kind">${a.kind}</div><h3>${a.name}</h3></div>
+      </div>
+      <p>${a.desc}</p>
+      <div class="actions">
+        ${a.soon
+          ? `<span class="btn btn-primary">Coming soon</span>`
+          : `<a class="btn btn-primary" href="${a.pwa}">Open${a.apk?' the web app':''} →</a>`}
+        ${a.apk?`<a class="btn btn-ghost" href="${a.apk}">Download APK</a>`:``}
+      </div>
+    </article>`).join("");
+</script>
+</body>
+</html>

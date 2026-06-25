@@ -114,18 +114,11 @@
   // apk = optional Android download (GitHub release asset).
   const APPS = [
     {
-      name:"ohPrimer", kind:"Reading engine",
-      desc:"Speed-read anything — books, articles, podcasts — with an RSVP reader, then keep it with spaced repetition. On-device translation, transcription, and read-aloud. Nothing leaves your device.",
+      name:"Trellis", kind:"Learning engine",
+      desc:"Read anything — books, articles, podcasts — with a speed reader, then drill it into durable memory with spaced repetition. On-device translation, transcription, and read-aloud; import authored courses too. Nothing leaves your device.",
       c1:"#C47B6A", c2:"#A85040",
       pwa:"https://levitatingflyfisher.github.io/ohPrimer/",
       apk:"https://github.com/levitatingflyfisher/ohPrimer/releases/latest/download/trellis.apk"
-    },
-    {
-      name:"Trellis", kind:"Knowledge engine",
-      desc:"Load any source and drill it into durable, first-principles memory. A Quantum-Country-style mnemonic medium: prose interleaved with atomic spaced-repetition cards, scheduled so it sticks.",
-      c1:"#7C9A86", c2:"#4F6F5B",
-      pwa:"https://levitatingflyfisher.github.io/Trellis/",
-      apk:"https://github.com/levitatingflyfisher/Trellis/releases/latest/download/trellis.apk"
     },
     { name:"Sundial", kind:"Outdoor time", c1:"#D9A14E", c2:"#B07A2E",
       desc:"A gentle, local-first tracker that nudges the whole family toward more time outdoors.",
@@ -155,9 +148,13 @@
       apk:"https://github.com/levitatingflyfisher/Lilt/releases/latest/download/Lilt.apk" },
     { name:"eloEngine", kind:"Ranking engine", soon:true, c1:"#8B8178", c2:"#5E564E",
       desc:"Rank anything by quick, Elo-style pairwise comparisons — a small, focused engine." },
-    { name:"glean", kind:"Family finance", soon:true, c1:"#5E8B86", c2:"#3C615C",
-      desc:"Plain-text family finance — a local-first budget and ledger on the hledger / Paisa model." }
+    { name:"glean", kind:"Family finance · Desktop", c1:"#5E8B86", c2:"#3C615C",
+      desc:"Plain-text family finance — a local-first budget and ledger on the hledger / Paisa model. A desktop app (Linux build today; Windows & Mac to follow).",
+      desktop:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-x86_64.AppImage" }
   ];
+  // Desktop = fine pointer + a roomy screen. glean is a desktop app, so its
+  // download only makes sense here; on phones it shows as desktop-only.
+  const isDesktop = window.matchMedia('(min-width:900px) and (pointer:fine)').matches;
   const ico = (a)=>`data:image/svg+xml,${encodeURIComponent(
     `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='${a.c1}' opacity='.16'/><path d='M256 104c-34 0-62 50-62 120 0 52 19 96 62 140 43-44 62-88 62-140 0-70-28-120-62-120z' fill='${a.c1}'/><path d='M256 156c-17 0-31 35-31 78 0 33 10 60 31 86 21-26 31-53 31-86 0-43-14-78-31-78z' fill='${a.c2}'/></svg>`)}`;
   document.getElementById("apps").innerHTML = APPS.map(a=>`
@@ -174,7 +171,11 @@
             ? `<a class="btn btn-primary" href="${a.pwa}">Open${a.apk?' the web app':''} →</a>`
             : a.apk
               ? `<a class="btn btn-primary" href="${a.apk}">Download for Android ↓</a>`
-              : `<span class="btn btn-primary">Coming soon</span>`}
+              : a.desktop
+                ? (isDesktop
+                    ? `<a class="btn btn-primary" href="${a.desktop}">Download for Linux ↓</a>`
+                    : `<span class="btn btn-primary">Desktop app</span>`)
+                : `<span class="btn btn-primary">Coming soon</span>`}
         ${a.apk&&a.pwa?`<a class="btn btn-ghost" href="${a.apk}">Download APK</a>`:``}
       </div>
     </article>`).join("");

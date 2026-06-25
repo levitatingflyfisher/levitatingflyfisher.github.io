@@ -117,7 +117,8 @@
       name:"ohPrimer", kind:"Reading engine",
       desc:"Speed-read anything — books, articles, podcasts — with an RSVP reader, then keep it with spaced repetition. On-device translation, transcription, and read-aloud. Nothing leaves your device.",
       c1:"#C47B6A", c2:"#A85040",
-      pwa:"https://levitatingflyfisher.github.io/ohPrimer/"
+      pwa:"https://levitatingflyfisher.github.io/ohPrimer/",
+      apk:"https://github.com/levitatingflyfisher/ohPrimer/releases/latest/download/trellis.apk"
     },
     {
       name:"Trellis", kind:"Knowledge engine",
@@ -128,25 +129,30 @@
     },
     { name:"Sundial", kind:"Outdoor time", c1:"#D9A14E", c2:"#B07A2E",
       desc:"A gentle, local-first tracker that nudges the whole family toward more time outdoors.",
-      pwa:"https://levitatingflyfisher.github.io/Sundial/" },
+      pwa:"https://levitatingflyfisher.github.io/Sundial/",
+      apk:"https://github.com/levitatingflyfisher/Sundial/releases/latest/download/Sundial.apk" },
     { name:"Lullaby", kind:"Baby tracker", c1:"#9A8FB5", c2:"#6E5F90",
       desc:"A FLOSS baby tracker for exhausted parents — feeds, sleep, and diapers, all on your device.",
-      pwa:"https://levitatingflyfisher.github.io/Lullaby/" },
+      pwa:"https://levitatingflyfisher.github.io/Lullaby/",
+      apk:"https://github.com/levitatingflyfisher/Lullaby/releases/latest/download/Lullaby.apk" },
     { name:"Punctum Temporis", kind:"Daily montage", c1:"#C98A8A", c2:"#A85F5F",
       desc:"A Daybook of Vignettes — daily snapshots stitched into a journal montage, one second of every day.",
-      pwa:"https://levitatingflyfisher.github.io/PunctumTemporis/" },
-    { name:"Reckon", kind:"Decision journal", c1:"#7E94A8", c2:"#536B82",
-      desc:"Think a choice through, write down what you expect, and learn from how it actually turned out.",
-      pwa:"https://levitatingflyfisher.github.io/Reckon/" },
-    { name:"StillLife", kind:"Home inventory", c1:"#C08552", c2:"#965B2E",
-      desc:"Know what you own, where it is, and what it's worth — a private home inventory kept on-device.",
-      pwa:"https://levitatingflyfisher.github.io/StillLife/" },
+      pwa:"https://levitatingflyfisher.github.io/PunctumTemporis/",
+      apk:"https://github.com/levitatingflyfisher/PunctumTemporis/releases/latest/download/PunctumTemporis.apk" },
+    { name:"Reckon", kind:"Decision journal · Android", c1:"#7E94A8", c2:"#536B82",
+      desc:"Think a choice through, write down what you expect, and learn from how it actually turned out. Runs an on-device LLM, so it's an Android app rather than a web build.",
+      apk:"https://github.com/levitatingflyfisher/Reckon/releases/latest/download/Reckon.apk" },
+    { name:"StillLife", kind:"Home inventory · Android", c1:"#C08552", c2:"#965B2E",
+      desc:"Know what you own, where it is, and what it's worth — a private home inventory kept on-device. Uses your camera and a barcode scanner, so it's an Android app rather than a web build.",
+      apk:"https://github.com/levitatingflyfisher/StillLife/releases/latest/download/StillLife.apk" },
     { name:"Mantle", kind:"Shared aesthetic", c1:"#A57A8C", c2:"#7A4F62",
       desc:"Discover your family's shared aesthetic together — privately, with no account.",
-      pwa:"https://levitatingflyfisher.github.io/Mantle/" },
+      pwa:"https://levitatingflyfisher.github.io/Mantle/",
+      apk:"https://github.com/levitatingflyfisher/Mantle/releases/latest/download/Mantle.apk" },
     { name:"Lilt", kind:"Baby names", c1:"#C9A26B", c2:"#8B6F47",
       desc:"Find the name you both love. Rank baby names together through quick, playful head-to-head picks — local-first, no account.",
-      pwa:"https://levitatingflyfisher.github.io/Lilt/" },
+      pwa:"https://levitatingflyfisher.github.io/Lilt/",
+      apk:"https://github.com/levitatingflyfisher/Lilt/releases/latest/download/Lilt.apk" },
     { name:"eloEngine", kind:"Ranking engine", soon:true, c1:"#8B8178", c2:"#5E564E",
       desc:"Rank anything by quick, Elo-style pairwise comparisons — a small, focused engine." },
     { name:"glean", kind:"Family finance", soon:true, c1:"#5E8B86", c2:"#3C615C",
@@ -164,8 +170,12 @@
       <div class="actions">
         ${a.soon
           ? `<span class="btn btn-primary">Coming soon</span>`
-          : `<a class="btn btn-primary" href="${a.pwa}">Open${a.apk?' the web app':''} →</a>`}
-        ${a.apk?`<a class="btn btn-ghost" href="${a.apk}">Download APK</a>`:``}
+          : a.pwa
+            ? `<a class="btn btn-primary" href="${a.pwa}">Open${a.apk?' the web app':''} →</a>`
+            : a.apk
+              ? `<a class="btn btn-primary" href="${a.apk}">Download for Android ↓</a>`
+              : `<span class="btn btn-primary">Coming soon</span>`}
+        ${a.apk&&a.pwa?`<a class="btn btn-ghost" href="${a.apk}">Download APK</a>`:``}
       </div>
     </article>`).join("");
 </script>

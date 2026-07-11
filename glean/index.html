@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>glean · viewer</title>
+  <meta name="description" content="A private, read-only viewer for your glean plain-text finance journals — parsed in your browser by glean's real Rust engine." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Boot overlay: shown until the wasm engine is ready -->
+  <div id="boot" class="boot">
+    <div class="boot-mark">glean</div>
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="boot-msg" id="boot-msg">Loading the engine…</div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <span class="brand-name">glean</span>
+      <span class="brand-tag">viewer</span>
+    </div>
+    <div class="brand-sub">read-only · 100% on-device</div>
+  </header>
+
+  <main class="wrap">
+    <!-- ── Intake ─────────────────────────────────────────────── -->
+    <section id="intake" class="intake">
+      <h1>See your money, privately.</h1>
+      <p class="lede">
+        Drop the <code>.journal</code> files you already own. They are parsed
+        <strong>entirely in your browser</strong> by glean's real Rust engine
+        compiled to WebAssembly — nothing is uploaded, stored, or sent anywhere.
+      </p>
+
+      <div id="drop" class="drop">
+        <div class="drop-inner">
+          <div class="drop-icon">↓</div>
+          <div class="drop-text">
+            <strong>Drop a <code>.journal</code> file here</strong>
+            <span>or use the pickers below (accounts.journal & glean.toml optional)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pickers">
+        <label class="picker">
+          <span class="picker-label">Journal <em>(required)</em></span>
+          <input id="in-journal" type="file" accept=".journal,text/plain" multiple />
+          <span class="picker-hint" id="hint-journal">no file chosen</span>
+        </label>
+        <label class="picker">
+          <span class="picker-label">accounts.journal <em>(optional)</em></span>
+          <input id="in-accounts" type="file" accept=".journal,text/plain" />
+          <span class="picker-hint" id="hint-accounts">defaults applied</span>
+        </label>
+        <label class="picker">
+          <span class="picker-label">glean.toml <em>(optional)</em></span>
+          <input id="in-config" type="file" accept=".toml,text/plain" />
+          <span class="picker-hint" id="hint-config">enables tithing & envelopes</span>
+        </label>
+      </div>
+
+      <div class="intake-actions">
+        <button id="analyze" class="btn-primary" disabled>Analyze</button>
+        <button id="sample" class="btn-ghost">Load a sample</button>
+      </div>
+
+      <div id="intake-err" class="intake-err" hidden></div>
+
+      <div class="note">
+        <h3>What this is — and isn't</h3>
+        <ul>
+          <li><strong>Is:</strong> a read-only dashboard for journals you already have. It never changes a byte of your data.</li>
+          <li><strong>Isn't:</strong> the full app. Importing statements, categorizing, budgeting and editing all live in the <strong>glean desktop app</strong> (Windows / macOS / Linux).</li>
+          <li><strong>Private by construction:</strong> there is no server. The math runs in a WebAssembly sandbox on this device; close the tab and nothing remains.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── Dashboard ──────────────────────────────────────────── -->
+    <section id="dash" class="dash" hidden>
+      <div class="dash-head">
+        <div>
+          <h2 id="dash-title">Dashboard</h2>
+          <div class="dash-meta" id="dash-meta"></div>
+        </div>
+        <div class="dash-toggle">
+          <button class="seg is-active" data-scope="month" id="seg-month">This month</button>
+          <button class="seg" data-scope="year" id="seg-year">This year</button>
+          <button class="btn-ghost" id="reset">← New file</button>
+        </div>
+      </div>
+
+      <div class="cards" id="cards"></div>
+
+      <div class="grid2">
+        <div class="panel">
+          <h3>Spending by category <span id="cat-scope" class="muted"></span></h3>
+          <div id="categories" class="bars"></div>
+        </div>
+        <div class="panel">
+          <h3>Net worth trend</h3>
+          <div id="networth" class="trend"></div>
+        </div>
+      </div>
+
+      <div class="grid2" id="config-panels" hidden>
+        <div class="panel" id="tithing-panel" hidden>
+          <h3>Tithing <span class="muted" id="tithing-year"></span></h3>
+          <div id="tithing" class="kv"></div>
+        </div>
+        <div class="panel" id="envelope-panel" hidden>
+          <h3>Envelopes</h3>
+          <div id="envelopes" class="bars"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Transactions <span class="muted" id="tx-count"></span></h3>
+        <div class="table-scroll">
+          <table class="tx">
+            <thead>
+              <tr><th>Date</th><th>Payee</th><th class="num">Amount</th><th>Category</th><th class="ctr">✓</th></tr>
+            </thead>
+            <tbody id="tx-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <footer class="foot">
+        <span id="engine-line"></span>
+        <span>· parsed on-device · nothing was uploaded</span>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

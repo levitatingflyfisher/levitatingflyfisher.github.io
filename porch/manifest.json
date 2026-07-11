@@ -1,0 +1,35 @@
+{
+    "name": "Porch — presence, not chat",
+    "short_name": "Porch",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F5EFE6",
+    "theme_color": "#B4762A",
+    "description": "The porch light for your friend group: a privacy-first, end-to-end-encrypted way to say 'I'm around'. This web build is a preview — keys live in browser storage, weaker than the Android app.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
+}

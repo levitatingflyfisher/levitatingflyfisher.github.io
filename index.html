@@ -172,7 +172,8 @@
       desc:"Turn the porch light on. Tap Available and the close friends already in your circle see it — no chat, no feed, no accounts. A pre-release preview for phone testing: it runs fully offline, and connecting your circle needs a small blind relay you stand up yourself.",
       apk:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/porch-preview/Porch.apk" },
     { name:"glean", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#5E8B86' opacity='.16'/><g transform='translate(256 256) rotate(-22)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(0)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(22)'><line x1='0' y1='-4' x2='0' y2='134' stroke='#5E8B86' stroke-width='26' stroke-linecap='round'/></g><g transform='translate(256 256) rotate(-22)'><path d='M0,-174 Q37,-90 0,-6 Q-37,-90 0,-174 Z' fill='#3C615C'/></g><g transform='translate(256 256) rotate(0)'><path d='M0,-182 Q38,-94 0,-6 Q-38,-94 0,-182 Z' fill='#3C615C'/></g><g transform='translate(256 256) rotate(22)'><path d='M0,-174 Q37,-90 0,-6 Q-37,-90 0,-174 Z' fill='#3C615C'/></g><rect x='196' y='249' width='120' height='30' rx='15' fill='#3C615C'/></svg>", kind:"Family finance", c1:"#5E8B86", c2:"#3C615C",
-      desc:"Plain-text family finance — a local-first budget and ledger on the hledger / Paisa model. A desktop app for Windows, macOS, and Linux.",
+      desc:"Plain-text family finance — a local-first budget and ledger on the hledger / Paisa model. A desktop app for Windows, macOS, and Linux, plus a read-only web viewer that opens a journal right in your browser — parsed on-device by glean's real engine, nothing uploaded.",
+      pwa:"https://levitatingflyfisher.github.io/glean/", pwaLabel:"Web viewer →",
       desktopBuilds:{
         win:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-windows-setup.exe",
         mac:"https://github.com/levitatingflyfisher/levitatingflyfisher.github.io/releases/download/glean-desktop-v0/glean-macos.dmg",
@@ -196,18 +197,21 @@
   // Each card's action row. A web app and its Android APK sit side by side at
   // equal weight (copper + pine); an Android-only app shows just the green APK
   // button — never the copper web colour; glean is a desktop download.
-  const webBtn = a=>`<a class="btn btn-web" href="${a.pwa}">Open web app →</a>`;
+  const webBtn = a=>`<a class="btn btn-web" href="${a.pwa}">${a.pwaLabel||'Open web app →'}</a>`;
   const apkBtn = a=>`<a class="btn btn-apk" href="${a.apk}">Android app ↓</a>`;
+  const desktopBtns = a=> isDesktop
+      ? `<a class="btn btn-desktop" href="${a.desktopBuilds[os]||a.desktopBuilds.linux}">Download for ${osLabel} ↓</a>`
+        + `<a class="btn btn-ghost" href="${a.desktopAll}">All platforms</a>`
+      : `<span class="btn btn-na">Desktop app</span>`;
   const actionsFor = a=>
       a.soon ? `<span class="btn btn-na">Coming soon</span>`
+    // A desktop app may ALSO ship a web companion (glean's read-only viewer):
+    // show the web button beside the desktop download — never hide it. On a
+    // phone this gives glean a live "Web viewer →" instead of a dead pill.
+    : a.desktopBuilds ? (a.pwa ? webBtn(a) : ``) + desktopBtns(a)
     : a.pwa  ? webBtn(a) + (a.apk ? apkBtn(a) : ``)
     : a.apk  ? apkBtn(a)
-    : a.desktopBuilds
-        ? (isDesktop
-            ? `<a class="btn btn-desktop" href="${a.desktopBuilds[os]||a.desktopBuilds.linux}">Download for ${osLabel} ↓</a>`
-              + `<a class="btn btn-ghost" href="${a.desktopAll}">All platforms</a>`
-            : `<span class="btn btn-na">Desktop app</span>`)
-        : `<span class="btn btn-na">Coming soon</span>`;
+    : `<span class="btn btn-na">Coming soon</span>`;
   document.getElementById("apps").innerHTML = APPS.map(a=>`
     <article class="card${a.soon?' soon':''}">
       <div class="card-head">

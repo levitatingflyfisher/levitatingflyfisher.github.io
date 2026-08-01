@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#1a2440"/>
+      <stop offset="100%" stop-color="#0b0f1a"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="96" fill="url(#sky)"/>
+  <circle cx="256" cy="256" r="176" fill="none" stroke="#3d4a6b" stroke-width="10"/>
+  <!-- a little Big Dipper -->
+  <g stroke="#9db4e8" stroke-width="7" fill="#f2f4ff">
+    <polyline points="150,300 195,268 245,272 292,252 322,208 372,196 398,236"
+              fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="150" cy="300" r="13"/>
+    <circle cx="195" cy="268" r="11"/>
+    <circle cx="245" cy="272" r="11"/>
+    <circle cx="292" cy="252" r="12"/>
+    <circle cx="322" cy="208" r="11"/>
+    <circle cx="372" cy="196" r="11"/>
+    <circle cx="398" cy="236" r="13"/>
+  </g>
+  <circle cx="176" cy="180" r="6" fill="#c9d3f2"/>
+  <circle cx="352" cy="330" r="6" fill="#c9d3f2"/>
+  <circle cx="230" cy="352" r="5" fill="#8fa0c9"/>
+</svg>

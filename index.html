@@ -7,10 +7,11 @@
 <title>OpenHearth — calm, local-first tools for family life</title>
 <meta name="description" content="OpenHearth builds free, private, local-first tools for households — reading, learning, and home life. No ads, no tracking, no accounts. Open by default.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%23FBF8F4'/%3E%3Cpath d='M256 96c-36 0-66 54-66 128 0 56 20 102 66 148 46-46 66-92 66-148 0-74-30-128-66-128z' fill='%23C47B6A'/%3E%3Cpath d='M256 150c-18 0-33 37-33 83 0 35 11 64 33 91 22-27 33-56 33-91 0-46-15-83-33-83z' fill='%23A85040'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+<!-- Type is self-hosted. A fleet whose apps were stripped of Google
+     Fonts egress should not have its own front door call Google for
+     type. Fraunces + Nunito, SIL OFL 1.1, latin subsets only.
+     See fonts/OFL.txt. -->
+<link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root{
     --linen:#FBF8F4; --paper:#fff; --ink:#2b2420; --muted:#6b5d54;
@@ -138,11 +139,17 @@
     { name:"Peckish", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#7A4160' opacity='.16'/><circle cx='256' cy='256' r='140' fill='none' stroke='#7A4160' stroke-width='30'/><path d='M256 116 A140 140 0 1 1 174 369' stroke='#E0AC3F' stroke-width='30' fill='none' stroke-linecap='round'/><circle cx='256' cy='256' r='34' fill='#6F8F52'/></svg>", kind:"Family food", c1:"#E0AC3F", c2:"#7A4160",
       desc:"Feed the week. Plan dinners on a row of plates, keep the family recipe box, and send the plan to an aisle-sorted grocery list. Log meals in a tap or two against a built-in offline food database — no account, no ads, works in airplane mode.",
       pwa:"https://levitatingflyfisher.github.io/Peckish/",
-      apk:"https://github.com/levitatingflyfisher/Peckish/releases/latest/download/Peckish.apk" },
+      // Pinned tag, NOT /latest/: Peckish also publishes a v0-data release
+      // (the offline barcode databases), and whichever release is newest
+      // wins /latest/ — which 404'd this button.
+      apk:"https://github.com/levitatingflyfisher/Peckish/releases/download/v0-apk/Peckish.apk" },
     { name:"WeatherGlass", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#3D82C9' opacity='.16'/><g stroke='#21528A' stroke-width='26' stroke-linecap='round'><line x1='292' y1='208' x2='324' y2='208'/><line x1='267' y1='269' x2='289' y2='291'/><line x1='206' y1='294' x2='206' y2='326'/><line x1='145' y1='269' x2='123' y2='291'/><line x1='120' y1='208' x2='88' y2='208'/><line x1='145' y1='147' x2='123' y2='125'/><line x1='206' y1='122' x2='206' y2='90'/><line x1='267' y1='147' x2='289' y2='125'/></g><circle cx='206' cy='208' r='70' fill='#21528A'/><rect x='196' y='298' width='238' height='70' rx='35' fill='#3D82C9'/><circle cx='288' cy='300' r='82' fill='#3D82C9'/><circle cx='286' cy='256' r='58' fill='#3D82C9'/><circle cx='212' cy='320' r='56' fill='#3D82C9'/><circle cx='360' cy='308' r='60' fill='#3D82C9'/></svg>", kind:"Weather", c1:"#3D82C9", c2:"#21528A",
       desc:"A calm, local-first weather app for the home — the hours ahead and the week, on a screen painted from the real sky. Your location is rounded to a coarse cell before anything is sent; no account, no tracking. Read the sky, tell no one.",
       pwa:"https://levitatingflyfisher.github.io/WeatherGlass/",
       apk:"https://github.com/levitatingflyfisher/WeatherGlass/releases/latest/download/WeatherGlass.apk" },
+    { name:"NightGlass", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#5F74B8' opacity='.16'/><circle cx='256' cy='256' r='174' fill='none' stroke='#5F74B8' stroke-width='22'/><polyline points='150,300 195,268 245,272 292,252 322,208 372,196 398,236' fill='none' stroke='#39487E' stroke-width='18' stroke-linecap='round' stroke-linejoin='round'/><g fill='#39487E'><circle cx='150' cy='300' r='17'/><circle cx='195' cy='268' r='13'/><circle cx='245' cy='272' r='13'/><circle cx='292' cy='252' r='14'/><circle cx='322' cy='208' r='13'/><circle cx='372' cy='196' r='13'/><circle cx='398' cy='236' r='17'/></g></svg>", kind:"Stargazing", c1:"#5F74B8", c2:"#39487E",
+      desc:"Tonight's sky from your campsite — when true darkness falls, what the moon will do to it, which planets are out, and a star chart of the sky overhead. The whole sky is computed on your device, zero network requests, so it works with no signal at all. Red night mode spares dark-adapted eyes.",
+      pwa:"https://levitatingflyfisher.github.io/NightGlass/" },
     { name:"Parlour", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#3E8E78' opacity='.16'/><circle cx='204' cy='300' r='74' fill='none' stroke='#2F5D50' stroke-width='30'/><g stroke='#3E8E78' stroke-width='34' stroke-linecap='round'><line x1='262' y1='168' x2='356' y2='262'/><line x1='356' y1='168' x2='262' y2='262'/></g></svg>", kind:"Family games", c1:"#3E8E78", c2:"#2F5D50",
       desc:"A calm cupboard of pass-and-play classic games for the family table — tic-tac-toe and friends, with more on the shelf. Play the computer or hand the device around. Local-first, offline, no accounts, no ads.",
       pwa:"https://levitatingflyfisher.github.io/Parlour/",
@@ -160,12 +167,16 @@
       pwa:"https://levitatingflyfisher.github.io/Lullaby/",
       apk:"https://github.com/levitatingflyfisher/Lullaby/releases/latest/download/Lullaby.apk" },
     {
-      name:"Trellis", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C47B6A' opacity='.16'/><g stroke='#C47B6A' stroke-width='26' stroke-linecap='round'><line x1='120' y1='200' x2='312' y2='392'/><line x1='120' y1='120' x2='392' y2='392'/><line x1='200' y1='120' x2='392' y2='312'/></g><g stroke='#A85040' stroke-width='26' stroke-linecap='round'><line x1='120' y1='312' x2='312' y2='120'/><line x1='120' y1='392' x2='392' y2='120'/><line x1='200' y1='392' x2='392' y2='200'/></g></svg>", kind:"Learning engine",
-      desc:"Read anything — books, articles, podcasts — with a speed reader, then drill it into durable memory with spaced repetition. On-device translation, transcription, and read-aloud; import authored courses too. Nothing leaves your device.",
+      name:"Trellis", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C47B6A' opacity='.16'/><g stroke='#C47B6A' stroke-width='26' stroke-linecap='round'><line x1='120' y1='200' x2='312' y2='392'/><line x1='120' y1='120' x2='392' y2='392'/><line x1='200' y1='120' x2='392' y2='312'/></g><g stroke='#A85040' stroke-width='26' stroke-linecap='round'><line x1='120' y1='312' x2='312' y2='120'/><line x1='120' y1='392' x2='392' y2='120'/><line x1='200' y1='392' x2='392' y2='200'/></g></svg>", kind:"Read, listen, study",
+      desc:"One app for the household's whole knowledge diet. Bring in books, articles, or podcasts — episodes are transcribed on your own device, in the language they're spoken. Read four ways, from speed-reading to read-aloud, and your place survives switching. Then study what you keep: recall on a schedule that takes the hints away as it sticks, opening each concept only once the ones underneath it hold. Feeds are plain reverse-chronological and ephemera decay by default — the app never develops an interest in your attention. Export to Anki any time.",
       c1:"#C47B6A", c2:"#A85040",
-      pwa:"https://levitatingflyfisher.github.io/ohPrimer/",
-      apk:"https://github.com/levitatingflyfisher/ohPrimer/releases/latest/download/trellis.apk"
+      pwa:"https://levitatingflyfisher.github.io/Trellis/",
+      apk:"https://github.com/levitatingflyfisher/Trellis/releases/latest/download/Trellis.apk"
     },
+    { name:"Hatch", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#F2A93B'/><g stroke='#3A2B25' stroke-linecap='round'><g stroke-width='30'><line x1='60' y1='322' x2='128' y2='390'/><line x1='128' y1='322' x2='60' y2='390'/></g><g stroke-width='14'><line x1='232' y1='198' x2='214' y2='152'/><line x1='280' y1='198' x2='298' y2='152'/></g></g><circle cx='214' cy='148' r='16' fill='#3A2B25'/><circle cx='298' cy='148' r='16' fill='#3A2B25'/><circle cx='256' cy='254' r='66' fill='#FF6F61'/><circle cx='234' cy='244' r='12' fill='#3A2B25'/><circle cx='278' cy='244' r='12' fill='#3A2B25'/><path d='M152 268 Q152 402 256 402 Q360 402 360 268 L334 296 L308 268 L282 296 L256 268 L230 296 L204 268 L178 296 Z' fill='#FDF1DC'/></svg>", kind:"Times tables", c1:"#F2A93B", c2:"#C9862A",
+      desc:"Times tables until they are automatic, not merely memorised. Every fact is an egg the child builds with her own hands — stack the rows, fold to double, slice a row off ten, rotate it into its slot — and answering it fast and right across enough separate days hatches it into a critter for the album. No streaks, no countdowns, no ads, no accounts; works offline.",
+      pwa:"https://levitatingflyfisher.github.io/Hatch/",
+      apk:"https://github.com/levitatingflyfisher/Hatch/releases/latest/download/Hatch.apk" },
     { name:"StillLife", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C08552' opacity='.16'/><rect x='160' y='200' width='192' height='172' rx='10' fill='#C08552'/><rect x='170' y='200' width='172' height='26' fill='#965B2E'/><polygon points='160,200 256,200 214,140 118,140' fill='#965B2E'/><polygon points='256,200 352,200 394,140 298,140' fill='#965B2E'/></svg>", kind:"Home inventory", c1:"#C08552", c2:"#965B2E",
       desc:"Know what you own, where it is, and what it's worth — a private home inventory kept on-device. The web app does the full catalogue: rooms, containers, items, photos, and the insurance export. The Android app adds camera capture, barcode scanning, receipt reading, and LAN sync between your devices.",
       pwa:"https://levitatingflyfisher.github.io/StillLife/",

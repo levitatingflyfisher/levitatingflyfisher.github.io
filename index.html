@@ -168,7 +168,7 @@
       apk:"https://github.com/levitatingflyfisher/Lullaby/releases/latest/download/Lullaby.apk" },
     {
       name:"Trellis", icon:"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='118' fill='#C47B6A' opacity='.16'/><g stroke='#C47B6A' stroke-width='26' stroke-linecap='round'><line x1='120' y1='200' x2='312' y2='392'/><line x1='120' y1='120' x2='392' y2='392'/><line x1='200' y1='120' x2='392' y2='312'/></g><g stroke='#A85040' stroke-width='26' stroke-linecap='round'><line x1='120' y1='312' x2='312' y2='120'/><line x1='120' y1='392' x2='392' y2='120'/><line x1='200' y1='392' x2='392' y2='200'/></g></svg>", kind:"Read, listen, study",
-      desc:"One app for the household's whole knowledge diet. Bring in books, articles, or podcasts — episodes are transcribed on your own device, in the language they're spoken. Read four ways, from speed-reading to read-aloud, and your place survives switching. Then study what you keep: recall on a schedule that takes the hints away as it sticks, opening each concept only once the ones underneath it hold. Feeds are plain reverse-chronological and ephemera decay by default — the app never develops an interest in your attention. Export to Anki any time.",
+      desc:"One app for the household's whole knowledge diet. Bring in books, articles, podcasts, or anything shared from another app — episodes are transcribed on your own device. Read one word at a time, or follow along on the page as it is spoken, up to 4×, in the original or translated on your device. Then study what you keep: recall on a schedule that takes the hints away as it sticks, opening each concept only once the ones underneath it hold. Feeds are plain reverse-chronological and kept as a permanent archive — the app never develops an interest in your attention. Export to Anki any time.",
       c1:"#C47B6A", c2:"#A85040",
       pwa:"https://levitatingflyfisher.github.io/Trellis/",
       apk:"https://github.com/levitatingflyfisher/Trellis/releases/latest/download/Trellis.apk"
@@ -235,7 +235,7 @@
     : a.apk  ? apkBtn(a)
     : `<span class="btn btn-na">Coming soon</span>`;
   document.getElementById("apps").innerHTML = APPS.map(a=>`
-    <article class="card${a.soon?' soon':''}">
+    <article class="card${a.soon?' soon':''}" id="${a.name.toLowerCase()}">
       <div class="card-head">
         <img class="card-ico" src="${ico(a)}" alt="">
         <div><div class="kind">${a.kind}</div><h3>${a.name}</h3></div>
@@ -243,6 +243,7 @@
       <p>${a.desc}</p>
       <div class="actions">${actionsFor(a)}</div>
     </article>`).join("");
+  if (location.hash) document.getElementById(location.hash.slice(1).toLowerCase())?.scrollIntoView();
 </script>
 </body>
 </html>
